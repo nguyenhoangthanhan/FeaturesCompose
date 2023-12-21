@@ -40,7 +40,7 @@ fun SupportALLScreenSizesScreenLandscape() {
             modifier = Modifier
                 .fillMaxSize()
                 .weight(1f),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center 
         ) {
             Image(
                 painter = painterResource(id = R.drawable.img2),
