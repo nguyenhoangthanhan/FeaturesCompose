@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.nguyenhoangthanhan.featurescompose.navigation.FeaturesComposeRouter
 import com.nguyenhoangthanhan.featurescompose.navigation.Screen
-import com.nguyenhoangthanhan.featurescompose.ui.screens.HomeScreen
-import com.nguyenhoangthanhan.featurescompose.ui.screens.SupportALLScreenSizesScreen
+import com.nguyenhoangthanhan.featurescompose.ui.screens.portrait.HomeScreenPortrait
+import com.nguyenhoangthanhan.featurescompose.ui.screens.portrait.SupportALLScreenSizesScreenPortrait
 
 @Composable
-fun FeaturesComposeApp() {
+fun FeaturesComposeAppPortrait() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -20,11 +20,11 @@ fun FeaturesComposeApp() {
         Crossfade(targetState = FeaturesComposeRouter.currentScreen, label = "") { router ->
             when (router.value) {
                 is Screen.HomeScreen -> {
-                    HomeScreen()
+                    HomeScreenPortrait()
                 }
 
                 is Screen.SupportALLScreenSizesScreen -> {
-                    SupportALLScreenSizesScreen()
+                    SupportALLScreenSizesScreenPortrait()
                 }
             }
         }

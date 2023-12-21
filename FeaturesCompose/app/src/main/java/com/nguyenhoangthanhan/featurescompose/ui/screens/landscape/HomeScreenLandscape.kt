@@ -1,4 +1,4 @@
-package com.nguyenhoangthanhan.featurescompose.ui.screens
+package com.nguyenhoangthanhan.featurescompose.ui.screens.landscape
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,25 +13,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nguyenhoangthanhan.featurescompose.navigation.FeaturesComposeRouter
 import com.nguyenhoangthanhan.featurescompose.navigation.Screen
-import com.nguyenhoangthanhan.featurescompose.navigation.SystemBackButtonHandler
 
 @Composable
-fun SupportALLScreenSizesScreen() {
+fun HomeScreenLandscape() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Spacer(modifier = Modifier.size(16.dp))
+
         Button(
             onClick = {
                 FeaturesComposeRouter.navigateTo(Screen.SupportALLScreenSizesScreen)
             }
         ) {
-            Text(text = "SupportALLScreenSizesScreen")
+            Text(text = "Open Measure Internet Speech Screen")
         }
-    }
-
-    SystemBackButtonHandler {
-        FeaturesComposeRouter.navigateTo(Screen.HomeScreen)
     }
 }

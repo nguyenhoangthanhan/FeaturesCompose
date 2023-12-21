@@ -1,4 +1,4 @@
-package com.nguyenhoangthanhan.featurescompose.ui.screens
+package com.nguyenhoangthanhan.featurescompose.ui.screens.portrait
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,7 @@ import com.nguyenhoangthanhan.featurescompose.navigation.FeaturesComposeRouter
 import com.nguyenhoangthanhan.featurescompose.navigation.Screen
 
 @Composable
-fun HomeScreen() {
+fun HomeScreenPortrait() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

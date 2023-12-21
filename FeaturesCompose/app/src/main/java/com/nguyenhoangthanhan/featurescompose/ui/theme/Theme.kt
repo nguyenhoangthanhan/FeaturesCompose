@@ -14,6 +14,17 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.nguyenhoangthanhan.featurescompose.util.Dimensions
+import com.nguyenhoangthanhan.featurescompose.util.LocalAppDimens
+import com.nguyenhoangthanhan.featurescompose.util.LocalOrientationMode
+import com.nguyenhoangthanhan.featurescompose.util.Orientation
+import com.nguyenhoangthanhan.featurescompose.util.ProvideAppUtils
+import com.nguyenhoangthanhan.featurescompose.util.WindowSize
+import com.nguyenhoangthanhan.featurescompose.util.WindowSizeClass
+import com.nguyenhoangthanhan.featurescompose.util.compactDimensions
+import com.nguyenhoangthanhan.featurescompose.util.largeDimensions
+import com.nguyenhoangthanhan.featurescompose.util.mediumDimensions
+import com.nguyenhoangthanhan.featurescompose.util.smallDimensions
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -39,8 +50,9 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun FeaturesComposeTheme(
+    windowSizeClass: WindowSizeClass,
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
+    // Dynamic color is a   vailable on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -54,6 +66,31 @@ fun FeaturesComposeTheme(
         else -> LightColorScheme
     }
     val view = LocalView.current
+
+    val orientation = when {
+        windowSizeClass.width.size > windowSizeClass.height.size -> Orientation.Landscape
+        else -> Orientation.Portrait
+    }
+
+    val sizeThatMatters = when (orientation) {
+        Orientation.Portrait -> windowSizeClass.width
+        else -> windowSizeClass.height
+    }
+
+    val dimensions = when (sizeThatMatters) {
+        is WindowSize.Small -> smallDimensions
+        is WindowSize.Compact -> compactDimensions
+        is WindowSize.Medium -> mediumDimensions
+        else -> largeDimensions
+    }
+
+    val typography = when (sizeThatMatters) {
+        is WindowSize.Small -> typographySmall
+        is WindowSize.Compact -> typographyCompact
+        is WindowSize.Medium -> typographyMedium
+        else -> typographyBig
+    }
+
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
@@ -62,9 +99,21 @@ fun FeaturesComposeTheme(
         }
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    ProvideAppUtils(dimensions = dimensions, orientation = orientation) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = typography,
+            content = content
+        )
+    }
+}
+
+object AppTheme {
+    val dimens: Dimensions
+        @Composable
+        get() = LocalAppDimens.current
+
+    val orientation: Orientation
+        @Composable
+        get() = LocalOrientationMode.current
 }
