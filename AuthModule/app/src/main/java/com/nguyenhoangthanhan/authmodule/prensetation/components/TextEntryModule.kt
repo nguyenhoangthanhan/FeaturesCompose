@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -23,9 +25,12 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.nguyenhoangthanhan.authmodule.ui.theme.orange
 import com.nguyenhoangthanhan.authmodule.ui.theme.white
 
 @Composable
@@ -104,4 +109,23 @@ fun TextEntryModule(
 
 
     }
+}
+
+@Preview(showBackground = false)
+@Composable
+fun TextEntryModulePreview(){
+    TextEntryModule(
+        description = "Email address",
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp, 0.dp, 10.dp, 5.dp),
+        hint = "KApps@gmail.com",
+        leadingIcon = Icons.Default.Email,
+        textValue = "",
+        textColor = Color.Black,
+        cursorColor = orange,
+        onValueChanged = {},
+        onTrailingIconClick = {  },
+        visualTransformation = PasswordVisualTransformation()
+    )
 }
