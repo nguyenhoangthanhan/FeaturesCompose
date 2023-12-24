@@ -3,6 +3,7 @@ package com.nguyenhoangthanhan.authmodule.prensetation.viewmodel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
 import com.nguyenhoangthanhan.authmodule.domain.model.LoginInputValidationType
 import com.nguyenhoangthanhan.authmodule.domain.use_case.ValidateLoginInputUseCase
 import com.nguyenhoangthanhan.authmodule.prensetation.state.LoginState
@@ -12,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val validateLoginInputUseCase: ValidateLoginInputUseCase
-) {
+) : ViewModel() {
     var loginState by mutableStateOf(LoginState())
         private set
 
@@ -31,7 +32,7 @@ class LoginViewModel @Inject constructor(
         checkInputValidation()
     }
 
-    fun onLoginClick(){
+    fun onLoginClick() {
 
     }
 

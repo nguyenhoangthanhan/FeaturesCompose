@@ -3,6 +3,7 @@ package com.nguyenhoangthanhan.authmodule.prensetation.viewmodel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
 import com.nguyenhoangthanhan.authmodule.domain.model.LoginInputValidationType
 import com.nguyenhoangthanhan.authmodule.domain.model.RegisterInputValidationType
 import com.nguyenhoangthanhan.authmodule.domain.use_case.ValidateRegisterInputUseCase
@@ -14,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val validateRegisterInputUseCase: ValidateRegisterInputUseCase
-) {
+) : ViewModel() {
 
     var registerState by mutableStateOf(RegisterState())
         private set
@@ -44,7 +45,7 @@ class RegisterViewModel @Inject constructor(
         checkInputValidation()
     }
 
-    fun onRegisterClick(){
+    fun onRegisterClick() {
 
     }
 
