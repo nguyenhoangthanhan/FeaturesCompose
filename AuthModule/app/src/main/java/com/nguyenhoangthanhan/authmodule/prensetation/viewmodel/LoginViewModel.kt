@@ -4,10 +4,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.nguyenhoangthanhan.authmodule.domain.model.LoginInputValidationType
 import com.nguyenhoangthanhan.authmodule.domain.use_case.ValidateLoginInputUseCase
 import com.nguyenhoangthanhan.authmodule.prensetation.state.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,7 +35,12 @@ class LoginViewModel @Inject constructor(
     }
 
     fun onLoginClick() {
-
+        loginState = loginState.copy(isLoading = true)
+        viewModelScope.launch {
+//            loginState = try {
+//                val loginResult = auth
+//            }
+        }
     }
 
     private fun checkInputValidation() {

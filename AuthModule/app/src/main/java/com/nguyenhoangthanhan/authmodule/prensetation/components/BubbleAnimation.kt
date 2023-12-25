@@ -34,8 +34,8 @@ fun BubbleAnimation(
         modifier = modifier
     ) {
         val xValue by infiniteTransition.animateFloat(
-            initialValue = 100f,
-            targetValue = 1340f,
+            initialValue = 50f,
+            targetValue = 670f,
             animationSpec = infiniteRepeatable(
                 animation = tween(6000, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse
@@ -43,8 +43,8 @@ fun BubbleAnimation(
             label = ""
         )
         val yValue by infiniteTransition.animateFloat(
-            initialValue = 100f,
-            targetValue = 700f,
+            initialValue = 50f,
+            targetValue = 350f,
             animationSpec = infiniteRepeatable(
                 animation = tween(6000, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse
@@ -52,8 +52,8 @@ fun BubbleAnimation(
             label = ""
         )
         val xValue2 by infiniteTransition.animateFloat(
-            initialValue = 1340f,
-            targetValue = 100f,
+            initialValue = 670f,
+            targetValue = 50f,
             animationSpec = infiniteRepeatable(
                 animation = tween(8000, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse
@@ -61,8 +61,8 @@ fun BubbleAnimation(
             label = ""
         )
         val yValue2 by infiniteTransition.animateFloat(
-            initialValue = 400f,
-            targetValue = 200f,
+            initialValue = 200f,
+            targetValue = 100f,
             animationSpec = infiniteRepeatable(
                 animation = tween(7000, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse
@@ -70,8 +70,8 @@ fun BubbleAnimation(
             label = ""
         )
         val xValue3 by infiniteTransition.animateFloat(
-            initialValue = 1000f,
-            targetValue = 400f,
+            initialValue = 250f,
+            targetValue = 100f,
             animationSpec = infiniteRepeatable(
                 animation = tween(7500, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse
@@ -79,8 +79,8 @@ fun BubbleAnimation(
             label = ""
         )
         val yValue3 by infiniteTransition.animateFloat(
-            initialValue = 150f,
-            targetValue = 600f,
+            initialValue = 375f,
+            targetValue = 150f,
             animationSpec = infiniteRepeatable(
                 animation = tween(6000, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse
@@ -93,28 +93,28 @@ fun BubbleAnimation(
                 drawCircle(
                     brush = Brush.linearGradient(
                         listOf(bubbleColor1, bubbleColor2),
-                        start = Offset(xValue - 90, yValue),
-                        end = Offset(xValue + 90, yValue)
+                        start = Offset(xValue - 45, yValue),
+                        end = Offset(xValue + 45, yValue)
                     ),
-                    radius = 100f,
+                    radius = 50f,
                     center = Offset(xValue, yValue)
                 )
                 drawCircle(
                     brush = Brush.linearGradient(
                         listOf(bubbleColor1, bubbleColor2),
-                        start = Offset(xValue2 - 90, yValue),
-                        end = Offset(xValue2 + 90, yValue)
+                        start = Offset(xValue2 - 45, yValue),
+                        end = Offset(xValue2 + 45, yValue)
                     ),
-                    radius = 100f,
+                    radius = 50f,
                     center = Offset(xValue2, yValue2)
                 )
                 drawCircle(
                     brush = Brush.linearGradient(
                         listOf(bubbleColor1, bubbleColor2),
-                        start = Offset(xValue3 - 90, yValue),
-                        end = Offset(xValue3 + 90, yValue)
+                        start = Offset(xValue3 - 45, yValue),
+                        end = Offset(xValue3 + 45, yValue)
                     ),
-                    radius = 70f,
+                    radius = 35f,
                     center = Offset(xValue3, yValue3)
                 )
             }

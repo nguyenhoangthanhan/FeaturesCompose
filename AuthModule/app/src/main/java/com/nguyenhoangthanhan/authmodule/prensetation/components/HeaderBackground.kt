@@ -14,12 +14,12 @@ import com.nguyenhoangthanhan.authmodule.ui.theme.whiteGrayOrange
 
 @Composable
 fun HeaderBackground(
-    topColor: Color,
-    bottomColor: Color,
+    leftColor: Color,
+    rightColor: Color,
     modifier: Modifier = Modifier
 ) {
     val colorList = remember {
-        listOf(topColor, bottomColor)
+        listOf(leftColor, rightColor)
     }
 
     Canvas(
@@ -39,10 +39,10 @@ fun HeaderBackground(
 
 @Preview(showBackground = true)
 @Composable
-fun HeaderBackground() {
+fun HeaderBackgroundPreview() {
     HeaderBackground(
-        topColor = orange,
-        bottomColor = whiteGrayOrange,
+        leftColor = orange,
+        rightColor = whiteGrayOrange,
         modifier = Modifier.fillMaxSize()
     )
 }

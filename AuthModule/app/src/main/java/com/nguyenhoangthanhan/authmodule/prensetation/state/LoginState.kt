@@ -1,7 +1,7 @@
 package com.nguyenhoangthanhan.authmodule.prensetation.state
 
 data class LoginState(
-    var emailInput: String = "",
+    val emailInput: String = "",
     val passwordInput: String = "",
     val isInputValid: Boolean = false,
     val isPasswordShown: Boolean = false,

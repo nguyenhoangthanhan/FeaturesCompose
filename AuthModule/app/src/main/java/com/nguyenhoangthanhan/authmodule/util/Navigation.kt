@@ -39,7 +39,7 @@ fun Navigation() {
                         popUpTo(0)
                     }
                 },
-                onNavigateToRegisterScreen = {
+                onNavigateToLoginScreen = {
                     navController.navigate(ScreenRoutes.LoginScreen.route) {
                         popUpTo(0)
                     }

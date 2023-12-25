@@ -41,7 +41,7 @@ class RegisterViewModel @Inject constructor(
     }
 
     fun onToggleVisualTransformationPasswordRepeated() {
-        registerState = registerState.copy(isPasswordShown = !registerState.isPasswordRepeatedShown)
+        registerState = registerState.copy(isPasswordRepeatedShown = !registerState.isPasswordRepeatedShown)
         checkInputValidation()
     }
 

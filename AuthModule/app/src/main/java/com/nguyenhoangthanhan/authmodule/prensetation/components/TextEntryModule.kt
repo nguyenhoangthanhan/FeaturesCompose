@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 
 package com.nguyenhoangthanhan.authmodule.prensetation.components
 
@@ -37,7 +37,7 @@ import com.nguyenhoangthanhan.authmodule.ui.theme.white
 fun TextEntryModule(
     description: String,
     hint: String,
-    leadingIcon: ImageVector,
+    leadingIcon: ImageVector = Icons.Default.Email,
     textValue: String,
     keyboardType: KeyboardType = KeyboardType.Ascii,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -58,21 +58,22 @@ fun TextEntryModule(
         )
 
         TextField(
-            value = "abc",
-            onValueChange = onValueChanged,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 3.dp)
                 .border(0.5.dp, textColor, RoundedCornerShape(25.dp))
                 .height(50.dp)
                 .shadow(3.dp, RoundedCornerShape(25.dp)),
+            value = textValue,
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = white,
                 cursorColor = cursorColor,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),
+            onValueChange = onValueChanged,
             shape = RoundedCornerShape(25.dp),
+            singleLine = true,
             leadingIcon = {
                 Icon(
                     imageVector = leadingIcon,
@@ -94,7 +95,6 @@ fun TextEntryModule(
                     )
                 }
             },
-            singleLine = true,
             placeholder = {
                 Text(
                     text = hint,
