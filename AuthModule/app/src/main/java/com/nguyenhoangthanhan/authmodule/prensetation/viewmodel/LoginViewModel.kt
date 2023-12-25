@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nguyenhoangthanhan.authmodule.domain.model.LoginInputValidationType
+import com.nguyenhoangthanhan.authmodule.domain.repository.AuthRepository
 import com.nguyenhoangthanhan.authmodule.domain.use_case.ValidateLoginInputUseCase
 import com.nguyenhoangthanhan.authmodule.prensetation.state.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +15,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val validateLoginInputUseCase: ValidateLoginInputUseCase
+    private val validateLoginInputUseCase: ValidateLoginInputUseCase,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
+
     var loginState by mutableStateOf(LoginState())
         private set
 
@@ -37,9 +40,17 @@ class LoginViewModel @Inject constructor(
     fun onLoginClick() {
         loginState = loginState.copy(isLoading = true)
         viewModelScope.launch {
-//            loginState = try {
-//                val loginResult = auth
-//            }
+            loginState = try {
+                val loginResult = authRepository.login(
+                    email = loginState.emailInput,
+                    password = loginState.passwordInput
+                )
+                loginState.copy(isSuccessfullyLoggedIn = loginResult)
+            }catch (e: Exception){
+                loginState.copy(errorMessageLoginProcess = "Could not login")
+            }finally {
+                loginState = loginState.copy(isLoading = false)
+            }
         }
     }
 

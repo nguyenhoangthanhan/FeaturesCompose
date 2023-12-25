@@ -1,5 +1,7 @@
 package com.nguyenhoangthanhan.authmodule.di
 
+import com.nguyenhoangthanhan.authmodule.data.AuthRepositoryImpl
+import com.nguyenhoangthanhan.authmodule.domain.repository.AuthRepository
 import com.nguyenhoangthanhan.authmodule.domain.use_case.ValidateLoginInputUseCase
 import com.nguyenhoangthanhan.authmodule.domain.use_case.ValidateRegisterInputUseCase
 import dagger.Module
@@ -22,5 +24,11 @@ object AppModule {
     @Singleton
     fun providesValidateRegisterInputUseCase(): ValidateRegisterInputUseCase {
         return ValidateRegisterInputUseCase()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(): AuthRepository {
+        return AuthRepositoryImpl()
     }
 }

@@ -4,17 +4,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.nguyenhoangthanhan.authmodule.domain.model.LoginInputValidationType
 import com.nguyenhoangthanhan.authmodule.domain.model.RegisterInputValidationType
+import com.nguyenhoangthanhan.authmodule.domain.repository.AuthRepository
 import com.nguyenhoangthanhan.authmodule.domain.use_case.ValidateRegisterInputUseCase
 import com.nguyenhoangthanhan.authmodule.prensetation.state.LoginState
 import com.nguyenhoangthanhan.authmodule.prensetation.state.RegisterState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val validateRegisterInputUseCase: ValidateRegisterInputUseCase
+    private val validateRegisterInputUseCase: ValidateRegisterInputUseCase,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     var registerState by mutableStateOf(RegisterState())
@@ -46,7 +50,20 @@ class RegisterViewModel @Inject constructor(
     }
 
     fun onRegisterClick() {
-
+        registerState = registerState.copy(isLoading = true)
+        viewModelScope.launch {
+            registerState = try {
+                val loginResult = authRepository.register(
+                    email = registerState.emailInput,
+                    password = registerState.passwordInput
+                )
+                registerState.copy(isSuccessfullyRegistered = loginResult)
+            }catch (e: Exception){
+                registerState.copy(errorMessageRegisterProcess = "Could not register")
+            }finally {
+                registerState = registerState.copy(isLoading = false)
+            }
+        }
     }
 
     private fun checkInputValidation() {

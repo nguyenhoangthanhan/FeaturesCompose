@@ -30,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.nguyenhoangthanhan.authmodule.prensetation.components.AuthButton
 import com.nguyenhoangthanhan.authmodule.prensetation.components.BubbleAnimation
 import com.nguyenhoangthanhan.authmodule.prensetation.components.HeaderBackground
+import com.nguyenhoangthanhan.authmodule.prensetation.components.NavDestinationHelper
 import com.nguyenhoangthanhan.authmodule.prensetation.components.TextEntryModule
 import com.nguyenhoangthanhan.authmodule.prensetation.viewmodel.RegisterViewModel
 import com.nguyenhoangthanhan.authmodule.ui.theme.gray
@@ -44,6 +45,15 @@ fun RegisterScreen(
     onNavigateToLoginScreen: () -> Unit,
     registerViewModel: RegisterViewModel = hiltViewModel()
 ) {
+
+    NavDestinationHelper(
+        shouldNavigate = {
+            registerViewModel.registerState.isSuccessfullyRegistered
+        },
+        destination = {
+            onRegisterSuccessNavigation()
+        }
+    )
 
     Box(
         modifier = Modifier
